@@ -12,11 +12,5 @@ def pure_tick(current: int, step: int = 1) -> int:
 
 if __name__ == '__main__':
     # TODO: démontrer la différence de comportement (répétabilité)
-    print("Impure ticks:")
-    for _ in range(3):
-        print(impure_tick(2))
-    print("Pure ticks:")
-    current = 0
-    for _ in range(3):
-        current = pure_tick(current, 2)
-        print(current)
+    print("Impure ticks:", impure_tick(), impure_tick())
+    print("Pure tick", pure_tick(0), pure_tick(0))

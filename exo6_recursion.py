@@ -17,6 +17,7 @@ def sum_even_tail(n: int) -> int:
             return go(k - 2, acc + k)
         else:
             return go(k - 1, acc)
+    return go(n, 0)
 
 def sum_even_iter(n: int) -> int:
     return sum(x for x in range(2, n + 1, 2))
