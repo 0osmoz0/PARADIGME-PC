@@ -27,3 +27,4 @@ if __name__ == '__main__':
     print(f"Sum of squares of even >0 (loop): {result_loop}")
     print(f"Results are equal: {result_mfr == result_loop}")
     ...
+
