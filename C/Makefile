@@ -33,9 +33,17 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 # Compilation des exécutables
-$(BIN_DIR)/%: $(OBJ_DIR)/%.o $(OBJ_DIR)/math_utils.o
+$(BIN_DIR)/%: $(OBJ_DIR)/%.o
 	@echo "Linking $@"
-	$(CC) $^ -o $@
+	@if [ "$*" = "math_utils" ]; then \
+		echo "Skipping math_utils (no main function)"; \
+	else \
+		if [ -f $(OBJ_DIR)/math_utils.o ]; then \
+			$(CC) $< $(OBJ_DIR)/math_utils.o -o $@; \
+		else \
+			$(CC) $< -o $@; \
+		fi; \
+	fi
 
 # Version debug
 debug: CFLAGS += $(DEBUG_FLAGS)
